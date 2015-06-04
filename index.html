@@ -673,7 +673,7 @@
                                 <p>Enter your email address and we’ll send you our regular promotions, packed with great deals, special offers, and discounts</p>
                                 <!-- Subscribe Form -->
                                 <div class="subscribe-form">
-                                    <form action="#" method="get">
+                                    <form action="javascript:doForm()" method="get">
                                         <input type="text" name="" value="" placeholder="Your email" class="subscribe-input">
                                         <button type="submit" class="awe-btn awe-btn-5 arrow-right text-uppercase awe-btn-lager">subcrible</button>
                                     </form>
@@ -804,18 +804,20 @@
 
 
 
+
         <script>
 
             function runIt(){
 
                 if(whichOne==0){
 
+                       $('#somethingWicked').html('<center><br><h1>Searching Expedia and Partners...</h1><br><br><br><br><br></center>');
 
                         getExpedia();
                         // getAirBnB();
                         $('html, body').animate({
                                 scrollTop: $('.sales .title-wrap').offset().top
-                        }, 2000);
+                        }, 1000);
                  }
 
                  else{
@@ -826,10 +828,12 @@
                         function runIt1(){
 
                // getExpedia();
+               $('#somethingWicked').html('<center><br><h1>Searching AirBnB...</h1><br><br><br></center>');
+
                 getAirBnB();
                 $('html, body').animate({
                         scrollTop: $('.sales .title-wrap').offset().top
-                }, 2000);
+                }, 1000);
             }
 
 
@@ -838,6 +842,14 @@
 
 
                     $.getJSON('/cloud/models/get/exp.php?place='+$('#destination').val(), function(res){
+
+                         $('#somethingWicked').html('');
+
+
+                         if(!res['HotelListResponse']){
+
+                        $('#somethingWicked').html('<br><h1>No results found</h1><br>');
+                    }
 
                                                 ruc = res['HotelListResponse']['HotelList']['HotelSummary'];
 
@@ -861,7 +873,15 @@
 
             function getAirBnB(){
                  $.getJSON('/cloud/models/get/?place='+$('#destination').val(), function(res){
+                    
+                     $('#somethingWicked').html('');
+                     
+                    if(!res['result']){
 
+
+
+                        $('#somethingWicked').html('<br><h1>No results found</h1><br>');
+                    }
 
                                                 ruc = res['result'];
 
@@ -918,6 +938,12 @@
             $(window).load(init1);
             function init1(){
 
+                $('a').on('click', function(e){
+                    e.preventDefault();
+                    if($(this).attr('href')=="#" || $(this).attr('href')=="" || $(this).attr('href').indexOf('index')!=-1){
+                        $('#modLink').click();
+                    }
+                })
               
                 $('#pHomes').on('click', function(){
 
@@ -943,7 +969,41 @@
                 })
             }
 
+            function doForm(){
 
-        </script>      
+                $('#modLink').click();
+            }
+
+
+        </script>  
+
+
+          <script  src="js/fancybox/source/jquery.fancybox.pack.js?v=2.1.4" type="text/javascript"></script> 
+<script src="js/fancybox/source/helpers/jquery.fancybox-media.js?v=1.0.5" type="text/javascript"></script> 
+
+
+         <link href="js/fancybox/source/jquery.fancybox.css?v=2.1.4" rel="stylesheet">
+
+     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Hey there!</h4>
+      </div>
+      <div class="modal-body">
+        <h1>Didja know?</h1>
+        <p id="modalMedia">This is a demo app for CodeCloud.me and most of these features (besides the <b>core</b> search-through-hotels-and-private-residence deatures) don't exist yet. Many really awesome versions of this are being created on CodeCloud.me based on this code. <br><br>Want to see them? Maybe buy the code from some of the users? Want to build your own version with awesome devs from around the world?<br>It's all on <a href="https://www.codecloud.me">CodeCloud.me</a></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" id="closeBut">sw<it>eeee</it>t!</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div>
+
+
+<a href="#hey" data-toggle="modal" id="modLink" data-target="#myModal" style="display:none"></a>
+
     </body>
 </html>

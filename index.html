@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en"> 
 
 
@@ -813,7 +813,20 @@
 
                     $.getJSON('/cloud/models/get/exp.php?place='+$('#destination').val(), function(res){
 
+                                                var ruc = res['HotelListResponse']['HotelList']['HotelSummary'];
 
+                        for(i in ruc){
+
+                            var name = ruc[i]['name'];
+                            var placeId  = ruc[i]['hotelId'];
+                            var desc = ruc[i]['shortDescription'];
+                            var locDesc = ruc[i]['locationDescription'];
+                            var image ='http://origin-images.travelnow.com/'+ruc[i]['thumbNailUrl'];
+                            var url =ruc[i]['deepLink'];
+
+                            var rate = "$"+ruc[i]['lowRate'];
+
+                            addPlace(name, image, desc, url, locDesc, rate, type );
 
                     })
             }
@@ -822,8 +835,27 @@
                  $.getJSON('/cloud/models/get/?place='+$('#destination').val(), function(res){
 
 
+
+                        }
+                        
                         
                     })
+            }
+
+
+
+            function  addPlace(name, image, desc, url, locDesc, rate, type ){
+
+                    $('<div />').css(
+                        {'width':''},
+                        {'height':''},
+                        {'background-color':''},
+                        {'width':''},
+                        {'width':''},
+                        {'width':''},
+
+                        )
+
             }
 
 

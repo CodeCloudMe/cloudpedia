@@ -1,7 +1,8 @@
 <?php
 include_once($_SERVER['DOCUMENT_ROOT'].'cloud/models/main/index.php');
 
-$searchPlace = getAir("Memphis, TN", "", "");	
+$searchPlace = getAir("Memphis, TN", "", "");
+echo(json_encode($searchPlace));	
 
 
 function getAir($place, $startDate, $endData){

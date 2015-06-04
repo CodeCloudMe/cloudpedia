@@ -9,7 +9,7 @@ function getAir($place, $startDate, $endData){
 
 	$whats = getLatLng(array("address"=>$place, "sensor"=>true));
 
-	var_dump($whats);
+	//var_dump($whats);
 
 	$lon = floatval($whats['lon']);
 	$lat = floatval($whats['lat']);
@@ -28,7 +28,7 @@ $options = array(
 );
 $context  = stream_context_create($options);
 $result = file_get_contents($url, false, $context);
-echo($result);
+//echo($result);
 return json_decode($result, true);
 
 

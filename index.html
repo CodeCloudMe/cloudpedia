@@ -845,7 +845,7 @@
 
                             var name = ruc[i]['name'];
                             var placeId  = ruc[i]['hotelId'];
-                            var desc = ruc[i]['shortDescription'].substr(0, 140)+ "...";
+                            var desc = ruc[i]['shortDescription'].replace(/<p>.*?<br \/>/g, '');
                             var locDesc = ruc[i]['locationDescription'];
                             var image ='http://origin-images.travelnow.com/'+ruc[i]['thumbNailUrl'];
                             var url =ruc[i]['deepLink'];
@@ -869,7 +869,7 @@
 
                             var name = ruc[i]['attr']['heading'];
                             var placeId  = ruc[i]['id'];
-                            var desc = ruc[i]['attr']['description'];
+                            var desc = ruc[i]['attr']['description'].substr(0, 140)+ "...";
                             var locDesc = ruc[i]['attr']['roomType']['text'];
                             var image =ruc[i]['photos'][0]['medium'];
                             var url =ruc[i]['provider']['url'];

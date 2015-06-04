@@ -26,7 +26,7 @@ function getExp($place, $startDate, $endData){
 	echo($defaultEnd);
 
 	$xml = '<HotelListRequest>
-    <city>Seoul</city><arrivalDate>7/4/2015</arrivalDate><departureDate>7/6/2015</departureDate><RoomGroup><Room><numberOfAdults>2</numberOfAdults></Room></RoomGroup><numberOfResults>25</numberOfResults></HotelListRequest>';
+    <city>Seoul</city><arrivalDate>'.$defaultStart.'</arrivalDate><departureDate>'.$defaultEnd.'</departureDate><RoomGroup><Room><numberOfAdults>2</numberOfAdults></Room></RoomGroup><numberOfResults>25</numberOfResults></HotelListRequest>';
 
      $endP ='http://api.ean.com/ean-services/rs/hotel/v3/list?cid=55505&minorRev=99&apiKey=cbrzfta369qwyrm9t5b8y8kf&locale=en_US&currencyCode=USD';
      $endP = $endP ."&xml=".urlencode($xml);

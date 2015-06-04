@@ -12,7 +12,7 @@ function getAir($place, $startDate, $endData){
 	var_dump($whats);
 
 	$lon = floatval($whats['lon']);
-	$lat = floatval($what['lat']);
+	$lat = floatval($whats['lat']);
 
 
 $url = 'https://zilyo.p.mashape.com/search?latitude='.$lat.'&longitude='.$lon;
@@ -28,7 +28,7 @@ $options = array(
 );
 $context  = stream_context_create($options);
 $result = file_get_contents($url, false, $context);
-
+echo($result);
 return json_decode($result, true);
 
 

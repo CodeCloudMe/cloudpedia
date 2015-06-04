@@ -1,7 +1,15 @@
 <?php
 include_once($_SERVER['DOCUMENT_ROOT'].'cloud/models/main/index.php');
 
-$searchPlace = getAir("Memphis, TN", "", "");
+extract($_REQUEST);
+
+
+if(!isset($place)){
+
+	echo(json_encode(array("status"=>"fail", "msg"=>"send shit")));
+	return;
+}
+$searchPlace = getAir($place, "", "");
 echo(json_encode($searchPlace));	
 
 
@@ -29,7 +37,15 @@ $options = array(
 $context  = stream_context_create($options);
 $result = file_get_contents($url, false, $context);
 //echo($result);
-return json_decode($result, true);
+$yes = json_decode($result, true);
+if(!isset($yes)){
+	$res = array("status"=>"fail", "msg"=>"send shit");
+	return $res;
+}
+
+$yes['status']="success";
+
+return $yes;
 
 
 

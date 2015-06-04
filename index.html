@@ -98,11 +98,11 @@
                         <!-- Tabs Cat Form -->
                         <ul class="tabs-cat text-center row">
                            
-                            <li class="cate-item active col-xs-2">
+                            <li class="cate-item active col-xs-2" id="eHomes">
                                 <a data-toggle="tab" href="#form-hotel" title=""><span>Hotel</span><img src="images/icon-hotel.png" alt=""></a>
                             </li>
                            
-                            <li class="cate-item col-xs-2">
+                            <li class="cate-item col-xs-2" id="pHomes">
                                 <a data-toggle="tab" href="#form-hotel" title=""><span>Personal Homes</span><img src="images/icon-tour.png" alt=""></a>
                             </li>
                            
@@ -808,12 +808,30 @@
 
             function runIt(){
 
-                getExpedia();
+                if(whichOne==0){
+
+
+                        getExpedia();
+                        // getAirBnB();
+                        $('html, body').animate({
+                                scrollTop: $('.sales .title-wrap').offset().top
+                        }, 2000);
+                 }
+
+                 else{
+                    runIt1();
+                 }   
+            }
+
+                        function runIt1(){
+
+               // getExpedia();
                 getAirBnB();
                 $('html, body').animate({
                         scrollTop: $('.sales .title-wrap').offset().top
                 }, 2000);
             }
+
 
 
             function getExpedia(){
@@ -845,6 +863,26 @@
                  $.getJSON('/cloud/models/get/?place='+$('#destination').val(), function(res){
 
 
+                                                ruc = res['result'];
+
+                        for(i in ruc){
+
+                            var name = ruc[i]['attr']['heading'];
+                            var placeId  = ruc[i]['id'];
+                            var desc = ruc[i]['attr']['description'];
+                            var locDesc = ruc[i]['attr']['roomType']['text'];
+                            var image =ruc[i]['photos'][0]['medium'];
+                            var url =ruc[i]['provider']['url'];
+
+                            var rate = "$"+parseFloat(ruc[i]['price']['nightly']).toFixed(0);;
+                            var type="AirBnB";
+
+                            addPlace(name, image, desc, url, locDesc, rate, type );
+
+                    }
+
+
+
 
                         }
                         
@@ -874,15 +912,33 @@
 
             }
 
-
+            //0 is expedia
+            whichOne = 0;
 
             $(window).load(init1);
             function init1(){
 
+              
+                $('#pHomes').on('click', function(){
+
+                      whichOne=1;
+                })
+                $('#eHomes').on('click', function(){
+
+                    whichOne=0;
+
+                })
                 $('#destination').on('keydown', function(e){
 
                     if(e.keyCode==13){
-                        runIt();
+
+                        if(whichOne==0){
+                            runIt();
+                        }
+                        else{
+                            runIt1();
+                        }
+                        
                     }
                 })
             }

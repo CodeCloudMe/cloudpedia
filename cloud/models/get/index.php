@@ -9,6 +9,7 @@ function getAir($place, $startDate, $endData){
 
 	$whats = getLatLng(array("address"=>$place, "sensor"=>true));
 
+	var_dump($whats);
 
 	$lon = $whats['lon'];
 	$lat = $what['lat'];

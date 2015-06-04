@@ -424,6 +424,11 @@
                 <!-- Title -->
                 <div class="title-wrap">
                     <div class="container">
+
+                    <div id="somethingWicked" style="width:100%">
+
+
+                    </div>
                         <div class="travel-title float-left">
                             <h2>Hot Sale Today: <span>Paris, Amsterdam, Saint Petersburg & more</span></h2>
                         </div>
@@ -864,10 +869,8 @@
                         'border-bottom-style':'solid',
                         'border-bottom-color':'#999'}).html('<a href="'+url+'" style="text-decoration:none" target="_blank"><div style="float:left; width: 30%; padding:5px; margin:5px; display:inline-block;"><h1>'+rate+'</h1><br><img src="'+image+'" style="height:100px; width:100px"></div><div style="display:inline-block; width:60%; float:right"><h2 >'+name+'</h2><br><h3 style="font-size:15px">'+desc+'</h3><br><p>'+locDesc+'</p></div></a>');
 
-                    theD.prependTo('.sales .title-wrap');
-                      $('html, body').animate({
-                        scrollTop: $('.sales .title-wrap').offset().top
-                        }, 2000);
+                    theD.prependTo('#somethingWicked');
+                     
 
             }
 

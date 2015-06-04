@@ -16,9 +16,9 @@ echo(json_encode($searchPlace));
 
 function getExp($place, $startDate, $endData){
 
-	$cityArr = explode("," $place);
+	$cityArr = explode(",", $place);
 	$city = $cityArr[0];
-	
+
 	$defaultStart = $myDate = date('m/d/Y');
 	$defaultEnd  = new DateTime('tomorrow');
 	$defaultEnd= $defaultEnd->format('m/d/Y');

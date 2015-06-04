@@ -827,7 +827,7 @@
 
                             var name = ruc[i]['name'];
                             var placeId  = ruc[i]['hotelId'];
-                            var desc = ruc[i]['shortDescription'];
+                            var desc = ruc[i]['shortDescription'].replace(/<p>.*?<br \/>/g, '');
                             var locDesc = ruc[i]['locationDescription'];
                             var image ='http://origin-images.travelnow.com/'+ruc[i]['thumbNailUrl'];
                             var url =ruc[i]['deepLink'];

@@ -832,7 +832,7 @@
                             var image ='http://origin-images.travelnow.com/'+ruc[i]['thumbNailUrl'];
                             var url =ruc[i]['deepLink'];
 
-                            var rate = "$"+ruc[i]['lowRate'];
+                            var rate = "$"+parseFloat(ruc[i]['lowRate']).toFixed(0);;
                             var type="Expedia";
 
                             addPlace(name, image, desc, url, locDesc, rate, type );

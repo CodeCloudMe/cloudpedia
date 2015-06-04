@@ -23,7 +23,7 @@ function getExp($place, $startDate, $endData){
 	$defaultEnd  = new DateTime('tomorrow');
 	$defaultEnd= $defaultEnd->format('m/d/Y');
 
-	echo($defaultEnd);
+	//echo($defaultEnd);
 
 	$xml = '<HotelListRequest>
     <city>Seoul</city><arrivalDate>'.$defaultStart.'</arrivalDate><departureDate>'.$defaultEnd.'</departureDate><RoomGroup><Room><numberOfAdults>2</numberOfAdults></Room></RoomGroup><numberOfResults>25</numberOfResults></HotelListRequest>';

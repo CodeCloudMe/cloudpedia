@@ -813,7 +813,7 @@
 
                     $.getJSON('/cloud/models/get/exp.php?place='+$('#destination').val(), function(res){
 
-                                                var ruc = res['HotelListResponse']['HotelList']['HotelSummary'];
+                                                ruc = res['HotelListResponse']['HotelList']['HotelSummary'];
 
                         for(i in ruc){
 
@@ -825,6 +825,7 @@
                             var url =ruc[i]['deepLink'];
 
                             var rate = "$"+ruc[i]['lowRate'];
+                            var type="Expedia";
 
                             addPlace(name, image, desc, url, locDesc, rate, type );
 
@@ -847,18 +848,16 @@
 
             function  addPlace(name, image, desc, url, locDesc, rate, type ){
 
-                    var theD = $('<div />').css(
+                    theD = $('<div />').css(
                         {'width':'100%'},
                         {'height':'160px'},
                         {'background-color':'white'},
                         {'font-size':'20px'},
                         {'font-color':'black'},
                         {'padding':'10px'},
-                        {'margin':'10px'},
+                        {'margin':'10px'}).html('<a href="'+url+'" style="text-decoration:none" target="_blank"><div style="float:left; width: 30%; padding:5px; margin:5px; display:inline-block;"><h1>'+rate+'</h1><br><img src="'+image+'" style="height:100px; width:100px"></div><div style="display:inline-block; width:60%; float:right"><h2>'+name+'</h2><br><h3>'+desc+'</h3><br><p>'+locDesc+'</p></div></a>');
 
-                        ).html('< a href="'+url+'" style="text-decoration:none" target="_blank"><div style="float:left; width: 30%; padding:5px; margin:5px; display:inline-block;"><h1>'+rate+'</h1><br><img src="'+image+'" style="height:100px; width:100px"></div><div style="display:inline-block; width:60%; float:right"><h2>'+name+'</h2><br><h3>'+desc+'</h3><br><p>'+locDesc+'</p></div></a>');
-
-                    theD.prependTo('#sales');
+                    theD.prependTo('#sales .container');
 
 
             }

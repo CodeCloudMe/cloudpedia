@@ -873,6 +873,16 @@
                      
 
             }
+            $(window).location(init1);
+            function init1(){
+
+                $('#destination').on('keydown', function(e){
+
+                    if(e.keyCode==13){
+                        runIt();
+                    }
+                })
+            }
 
 
         </script>      
